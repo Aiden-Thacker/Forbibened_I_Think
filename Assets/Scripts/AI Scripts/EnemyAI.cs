@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
 
     public LayerMask LayerMask;
     public Transform target;
+    public Transform enemyFlip;
     public GameObject rayObject;
 
     public bool hasLineOfSight = false;

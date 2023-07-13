@@ -8,9 +8,8 @@ public class EnemyShooting : MonoBehaviour
 
     public Transform firePoint;
     public GameObject enemyProjectilePrefab;
-    public GameObject target;
     public EnemyHealth health;
-    public Rigidbody2D rd;
+    public Rigidbody2D rb;
 
 
     public float coolDown = 1f;
@@ -31,7 +30,7 @@ public class EnemyShooting : MonoBehaviour
         if (!e.hasLineOfSight)
             return;
         GameObject temp = Instantiate(enemyProjectilePrefab, firePoint.position, firePoint.rotation);
-        rd = temp.GetComponent<Rigidbody2D>();
+        rb = temp.GetComponent<Rigidbody2D>();
         //rd.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
         temp.GetComponent<EnemyBullet>().colorIndex = (int)(health.type);
         attacktimer = 0f;
@@ -41,9 +40,7 @@ public class EnemyShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         Vector2 lookDir = (Vector2)target.transform.position - rb.position;
-         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-         rb.rotation = angle;
+         
         
         attacktimer += Time.deltaTime;
         if (attacktimer >= coolDown)
